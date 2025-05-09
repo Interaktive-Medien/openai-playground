@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI Chat Demo</title>
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OpenAI Chat Demo</h1>
+
+      <div id="apiKeyWarning" class="warning-banner" style="display: none">
+        No API key found! Please go back to the
+        <a href="index.html">main page</a> to set up your API key.
+      </div>
+
+      <div class="model-select-section">
+        <label for="modelSelect"><strong>Model:</strong></label>
+        <select id="modelSelect">
+          <option value="gpt-4.1" selected>gpt-4.1</option>
+          <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+          <option value="gpt-4.1-nano">gpt-4.1-nano</option>
+          <option value="o4-mini">o4-mini</option>
+          <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+        </select>
+        <a
+          href="https://platform.openai.com/docs/models"
+          target="_blank"
+          class="model-docs-link"
+          >Model docs</a
+        >
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="input-container">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message here..."
+            onkeypress="handleKeyPress(event)"
+          />
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+    <script src="chat.js"></script>
+  </body>
+</html>

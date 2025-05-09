@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI Transcription Demo</title>
+    <link rel="stylesheet" href="transcribe.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OpenAI Transcription Demo</h1>
+      <p class="description">
+        Convert audio to text using OpenAI's Audio API.<br />
+        <a
+          href="https://platform.openai.com/docs/guides/speech-to-text"
+          target="_blank"
+          >Audio API documentation</a
+        >
+      </p>
+
+      <form id="transcribeForm">
+        <div class="input-section">
+          <label for="model">Model:</label>
+          <select id="model" required>
+            <option value="gpt-4o-transcribe" selected>
+              GPT-4 Transcribe (Best quality)
+            </option>
+            <option value="gpt-4o-mini-transcribe">
+              GPT-4 Mini Transcribe (Faster)
+            </option>
+            <option value="whisper-1">Whisper-1 (Most features)</option>
+          </select>
+        </div>
+
+        <div class="input-section">
+          <label for="audioFile">Audio File (max 25MB):</label>
+          <div class="audio-input-container">
+            <input
+              type="file"
+              id="audioFile"
+              accept="audio/mp3,audio/mp4,audio/mpeg,audio/mpga,audio/m4a,audio/wav,audio/webm"
+              required
+            />
+            <button type="button" id="recordButton" class="record-button">
+              <span class="record-icon"></span>
+              <span class="button-text">Record Audio</span>
+            </button>
+          </div>
+          <div class="file-info">
+            Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm
+          </div>
+          <div
+            id="recordingStatus"
+            class="recording-status"
+            style="display: none"
+          >
+            Recording... <span id="recordingTime">00:00</span>
+            <div class="recording-indicator"></div>
+          </div>
+          <div id="audioPreview" class="audio-preview" style="display: none">
+            <audio id="audioPlayer" controls></audio>
+            <button
+              type="button"
+              id="useRecording"
+              class="use-recording-button"
+            >
+              Use Recording
+            </button>
+            <button
+              type="button"
+              id="discardRecording"
+              class="discard-recording-button"
+            >
+              Discard
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <label for="prompt">
+            Prompt (Optional):
+            <span
+              class="tooltip"
+              title="Add context to improve transcription accuracy"
+              >ℹ️</span
+            >
+          </label>
+          <textarea
+            id="prompt"
+            placeholder="Add context to help improve transcription accuracy. Example: 'This is a lecture about artificial intelligence and machine learning.'"
+          ></textarea>
+        </div>
+
+        <div class="options-section">
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" id="timestamps" />
+              Include timestamps (Whisper-1 only)
+            </label>
+          </div>
+        </div>
+
+        <button type="submit">
+          <span class="button-text">Transcribe Audio</span>
+          <div class="loading-spinner" style="display: none"></div>
+        </button>
+      </form>
+
+      <!-- Results Section -->
+      <div id="resultSection" class="result-section" style="display: none">
+        <h2>Transcription Result</h2>
+        <div id="transcriptionResult" class="transcription-result"></div>
+        <button id="copyBtn" class="copy-button">Copy to Clipboard</button>
+      </div>
+
+      <!-- Error Section -->
+      <div id="errorSection" class="error-section" style="display: none"></div>
+    </div>
+    <script src="transcribe.js"></script>
+  </body>
+</html>

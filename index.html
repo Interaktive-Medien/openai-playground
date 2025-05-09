@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI API Demos</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OpenAI API Demos</h1>
+
+      <div class="api-key-section">
+        <h2>API Key Setup</h2>
+        <p class="api-key-info">
+          Don't have an API key?
+          <a href="https://platform.openai.com/account/api-keys" target="_blank"
+            >Create one here</a
+          >
+        </p>
+        <div class="input-container">
+          <input
+            type="password"
+            id="apiKey"
+            placeholder="Enter your OpenAI API key"
+          />
+          <button onclick="saveApiKey()">Save API Key</button>
+        </div>
+        <p class="status" id="apiKeyStatus"></p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-card" onclick="window.location.href='chat.html'">
+          <h2>Chat API Demo</h2>
+          <p>Chat with GPT models and explore their capabilities.</p>
+        </div>
+        <div class="demo-card" onclick="window.location.href='vision.html'">
+          <h2>Vision API Demo</h2>
+          <p>Upload images and let GPT analyze their content.</p>
+        </div>
+        <div class="demo-card" onclick="window.location.href='image.html'">
+          <h2>Image API Demo</h2>
+          <p>Generate images using DALL·E and GPT Image models.</p>
+        </div>
+        <div class="demo-card" onclick="window.location.href='transcribe.html'">
+          <h2>Transcription API Demo</h2>
+          <p>Convert audio files to text in their original language.</p>
+        </div>
+        <div class="demo-card" onclick="window.location.href='translate.html'">
+          <h2>Translation API Demo</h2>
+          <p>Translate audio files from any language to English.</p>
+        </div>
+        <div class="demo-card" onclick="window.location.href='speech.html'">
+          <h2>Text-to-Speech API Demo</h2>
+          <p>Convert text to lifelike spoken audio in multiple voices.</p>
+        </div>
+        <div class="demo-card" onclick="window.location.href='moderation.html'">
+          <h2>Moderation API Demo</h2>
+          <p>
+            Identify potentially harmful content in text and images using
+            advanced content moderation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

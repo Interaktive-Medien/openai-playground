@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI Translation Demo</title>
+    <link rel="stylesheet" href="translate.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OpenAI Translation Demo</h1>
+      <p class="description">
+        Translate any audio to English using OpenAI's Audio API.<br />
+        <a
+          href="https://platform.openai.com/docs/guides/speech-to-text"
+          target="_blank"
+          >Audio API documentation</a
+        >
+      </p>
+
+      <form id="translateForm">
+        <div class="input-section">
+          <label>Model: Whisper-1 (Translation Model)</label>
+        </div>
+
+        <div class="input-section">
+          <label for="audioFile">Audio File (max 25MB):</label>
+          <div class="audio-input-container">
+            <input
+              type="file"
+              id="audioFile"
+              accept="audio/mp3,audio/mp4,audio/mpeg,audio/mpga,audio/m4a,audio/wav,audio/webm"
+              required
+            />
+            <button type="button" id="recordButton" class="record-button">
+              <span class="record-icon"></span>
+              <span class="button-text">Record Audio</span>
+            </button>
+          </div>
+          <div class="file-info">
+            Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm
+          </div>
+          <div
+            id="recordingStatus"
+            class="recording-status"
+            style="display: none"
+          >
+            Recording... <span id="recordingTime">00:00</span>
+            <div class="recording-indicator"></div>
+          </div>
+          <div id="audioPreview" class="audio-preview" style="display: none">
+            <audio id="audioPlayer" controls></audio>
+            <button
+              type="button"
+              id="useRecording"
+              class="use-recording-button"
+            >
+              Use Recording
+            </button>
+            <button
+              type="button"
+              id="discardRecording"
+              class="discard-recording-button"
+            >
+              Discard
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <label for="prompt">
+            Prompt (Optional):
+            <span
+              class="tooltip"
+              title="Add context to improve translation accuracy"
+              >ℹ️</span
+            >
+          </label>
+          <textarea
+            id="prompt"
+            placeholder="Add context to help improve translation accuracy. Example: 'This is a lecture about artificial intelligence in German.'"
+          ></textarea>
+        </div>
+
+        <div class="options-section">
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" id="timestamps" />
+              Include timestamps
+            </label>
+          </div>
+        </div>
+
+        <button type="submit">
+          <span class="button-text">Translate to English</span>
+          <div class="loading-spinner" style="display: none"></div>
+        </button>
+      </form>
+
+      <!-- Results Section -->
+      <div id="resultSection" class="result-section" style="display: none">
+        <h2>Translation Result</h2>
+        <div id="translationResult" class="translation-result"></div>
+        <button id="copyBtn" class="copy-button">Copy to Clipboard</button>
+      </div>
+
+      <!-- Error Section -->
+      <div id="errorSection" class="error-section" style="display: none"></div>
+    </div>
+    <script src="translate.js"></script>
+  </body>
+</html>

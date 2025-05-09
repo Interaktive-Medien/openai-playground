@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI Moderation Demo</title>
+    <link rel="stylesheet" href="moderation.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OpenAI Moderation Demo</h1>
+      <p class="description">
+        Identify potentially harmful content in text using OpenAI's Moderation
+        API.<br />
+        <a
+          href="https://platform.openai.com/docs/guides/moderation"
+          target="_blank"
+          >Moderation API documentation</a
+        >
+      </p>
+
+      <form id="moderationForm">
+        <div class="input-section">
+          <label for="model">Model:</label>
+          <select id="model" required>
+            <option value="text-moderation-latest" selected>
+              Text Moderation (Latest)
+            </option>
+            <option value="text-moderation-stable">
+              Text Moderation (Stable)
+            </option>
+          </select>
+        </div>
+
+        <div class="input-section">
+          <label for="text">Text to analyze:</label>
+          <textarea
+            id="text"
+            placeholder="Enter text to check for potentially harmful content..."
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">
+          <span class="button-text">Check Content</span>
+          <div class="loading-spinner" style="display: none"></div>
+        </button>
+      </form>
+
+      <!-- Results Section -->
+      <div id="resultSection" class="result-section" style="display: none">
+        <h2>Moderation Results</h2>
+
+        <div class="summary-section">
+          <div class="flagged-status">
+            <span class="status-label">Status:</span>
+            <span id="flaggedStatus" class="status-value"></span>
+          </div>
+        </div>
+
+        <div class="categories-section">
+          <h3>Category Results</h3>
+          <div id="categoriesGrid" class="categories-grid">
+            <!-- Categories will be populated here -->
+          </div>
+        </div>
+
+        <div class="scores-section">
+          <h3>Detailed Scores</h3>
+          <div id="scoresGrid" class="scores-grid">
+            <!-- Scores will be populated here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Section -->
+      <div id="errorSection" class="error-section" style="display: none"></div>
+    </div>
+    <script src="moderation.js"></script>
+  </body>
+</html>

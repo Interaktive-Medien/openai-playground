@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI Vision Demo</title>
+    <link rel="stylesheet" href="vision.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OpenAI Vision Demo</h1>
+      <p class="description">
+        Upload an image and let GPT analyze its content. You can also add a
+        prompt to guide the analysis.<br />
+        <a href="https://platform.openai.com/docs/models" target="_blank"
+          >Model documentation</a
+        >
+      </p>
+
+      <div class="model-select-section">
+        <label for="modelSelect"><strong>Model:</strong></label>
+        <select id="modelSelect">
+          <option value="gpt-4.1" selected>gpt-4.1</option>
+          <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+          <option value="gpt-4.1-nano">gpt-4.1-nano</option>
+          <option value="o4-mini">o4-mini</option>
+        </select>
+      </div>
+
+      <form id="visionForm">
+        <div class="input-section">
+          <label for="imageInput"
+            >Upload image (PNG, JPG, JPEG, WEBP, GIF):</label
+          >
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/png, image/jpeg, image/jpg, image/webp, image/gif"
+            required
+          />
+        </div>
+        <div class="input-section">
+          <label for="promptInput">Prompt (optional):</label>
+          <input
+            type="text"
+            id="promptInput"
+            placeholder="e.g. What is in this image?"
+          />
+        </div>
+        <button type="submit">Analyze Image</button>
+      </form>
+
+      <div id="resultSection" class="result-section" style="display: none">
+        <h2>Analysis Result</h2>
+        <div id="imagePreview"></div>
+        <pre id="analysisResult"></pre>
+      </div>
+      <div id="errorSection" class="error-section" style="display: none"></div>
+    </div>
+    <script src="vision.js"></script>
+  </body>
+</html>

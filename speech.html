@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI Text-to-Speech Demo</title>
+    <link rel="stylesheet" href="speech.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OpenAI Text-to-Speech Demo</h1>
+      <p class="description">
+        Convert text to lifelike spoken audio using OpenAI's Audio API.<br />
+        <a
+          href="https://platform.openai.com/docs/guides/text-to-speech"
+          target="_blank"
+          >Text-to-Speech API documentation</a
+        >
+      </p>
+
+      <div class="disclaimer">
+        Note: The audio you will hear is AI-generated and not a human voice.
+      </div>
+
+      <form id="speechForm">
+        <div class="input-section">
+          <label for="model">Model:</label>
+          <select id="model" required>
+            <option value="gpt-4o-mini-tts" selected>
+              GPT-4 Mini TTS (Best quality)
+            </option>
+            <option value="tts-1-hd">TTS-1-HD (High quality)</option>
+            <option value="tts-1">TTS-1 (Fast)</option>
+          </select>
+        </div>
+
+        <div class="input-section">
+          <label for="voice">Voice:</label>
+          <div class="voice-grid">
+            <label class="voice-option">
+              <input type="radio" name="voice" value="alloy" checked />
+              <span class="voice-name">Alloy</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="ash" />
+              <span class="voice-name">Ash</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="ballad" />
+              <span class="voice-name">Ballad</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="coral" />
+              <span class="voice-name">Coral</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="echo" />
+              <span class="voice-name">Echo</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="fable" />
+              <span class="voice-name">Fable</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="nova" />
+              <span class="voice-name">Nova</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="onyx" />
+              <span class="voice-name">Onyx</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="sage" />
+              <span class="voice-name">Sage</span>
+              <span class="voice-sample"></span>
+            </label>
+            <label class="voice-option">
+              <input type="radio" name="voice" value="shimmer" />
+              <span class="voice-name">Shimmer</span>
+              <span class="voice-sample"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <label for="text">Text to speak:</label>
+          <textarea
+            id="text"
+            required
+            placeholder="Enter the text you want to convert to speech..."
+            rows="4"
+          ></textarea>
+        </div>
+
+        <div class="input-section">
+          <label for="instructions">
+            Instructions (Optional):
+            <span
+              class="tooltip"
+              title="Add instructions to control accent, emotion, intonation, speed, tone, etc."
+              >ℹ️</span
+            >
+          </label>
+          <textarea
+            id="instructions"
+            placeholder="Example: Speak in a cheerful and positive tone."
+            rows="2"
+          ></textarea>
+        </div>
+
+        <div class="input-section">
+          <label for="format">Output Format:</label>
+          <select id="format">
+            <option value="mp3" selected>MP3 (Default)</option>
+            <option value="opus">Opus (Low latency)</option>
+            <option value="aac">AAC (iOS/Android)</option>
+            <option value="flac">FLAC (Lossless)</option>
+            <option value="wav">WAV (Uncompressed)</option>
+            <option value="pcm">PCM (Raw 24kHz)</option>
+          </select>
+        </div>
+
+        <button type="submit">
+          <span class="button-text">Generate Speech</span>
+          <div class="loading-spinner" style="display: none"></div>
+        </button>
+      </form>
+
+      <!-- Audio Preview Section -->
+      <div id="audioSection" class="audio-section" style="display: none">
+        <h2>Generated Audio</h2>
+        <audio id="audioPlayer" controls></audio>
+        <div class="audio-controls">
+          <button id="downloadBtn" class="download-button">
+            Download Audio
+          </button>
+        </div>
+      </div>
+
+      <!-- Error Section -->
+      <div id="errorSection" class="error-section" style="display: none"></div>
+    </div>
+    <script src="speech.js"></script>
+  </body>
+</html>
