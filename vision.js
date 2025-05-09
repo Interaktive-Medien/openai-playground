@@ -53,6 +53,24 @@ function hideResult() {
 }
 
 /**
+ * Show loading state in the submit button
+ */
+function showLoading() {
+  const submitButton = document.querySelector('button[type="submit"]');
+  submitButton.classList.add("loading");
+  submitButton.disabled = true;
+}
+
+/**
+ * Hide loading state in the submit button
+ */
+function hideLoading() {
+  const submitButton = document.querySelector('button[type="submit"]');
+  submitButton.classList.remove("loading");
+  submitButton.disabled = false;
+}
+
+/**
  * Main function to set up event listeners and handle the form.
  */
 function main() {
@@ -70,87 +88,85 @@ function main() {
     event.preventDefault(); // Prevent page reload
     hideResult();
     hideError();
+    showLoading();
 
-    // Get the API key from localStorage
-    const apiKey = localStorage.getItem("openai_api_key");
-    if (!apiKey) {
-      showError(
-        "No API key found! Please go back to the main page and set your API key."
-      );
-      return;
-    }
-
-    // Get the selected model
-    const model = modelSelect.value;
-
-    // Get the uploaded file
-    const file = imageInput.files[0];
-    if (!file) {
-      showError("Please upload an image file.");
-      return;
-    }
-
-    // Convert the image to a Base64 data URL
-    let dataUrl;
     try {
-      dataUrl = await fileToDataURL(file);
-    } catch (err) {
-      showError("Failed to read the image file.");
-      return;
-    }
+      // Get the API key from localStorage
+      const apiKey = localStorage.getItem("openai_api_key");
+      if (!apiKey) {
+        throw new Error(
+          "No API key found! Please go back to the main page and set your API key."
+        );
+      }
 
-    // Extract the base64 part (remove the data:image/...;base64, prefix)
-    const base64Image = dataUrl.split(",")[1];
-    const mimeType = file.type;
+      // Get the selected model
+      const model = modelSelect.value;
 
-    // Get the prompt (or use a default)
-    const prompt = promptInput.value.trim() || "What is in this image?";
+      // Get the uploaded file
+      const file = imageInput.files[0];
+      if (!file) {
+        throw new Error("Please upload an image file.");
+      }
 
-    // Build the API request body
-    const requestBody = {
-      model: model,
-      messages: [
-        {
-          role: "user",
-          content: [
-            { type: "text", text: prompt },
-            {
-              type: "image_url",
-              image_url: {
-                url: `data:${mimeType};base64,${base64Image}`,
-                detail: "high", // You can change to "low" for faster/cheaper analysis
+      // Convert the image to a Base64 data URL
+      let dataUrl;
+      try {
+        dataUrl = await fileToDataURL(file);
+      } catch (err) {
+        throw new Error("Failed to read the image file.");
+      }
+
+      // Extract the base64 part (remove the data:image/...;base64, prefix)
+      const base64Image = dataUrl.split(",")[1];
+      const mimeType = file.type;
+
+      // Get the prompt (or use a default)
+      const prompt = promptInput.value.trim() || "What is in this image?";
+
+      // Build the API request body
+      const requestBody = {
+        model: model,
+        messages: [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: prompt },
+              {
+                type: "image_url",
+                image_url: {
+                  url: `data:${mimeType};base64,${base64Image}`,
+                  detail: "high", // You can change to "low" for faster/cheaper analysis
+                },
               },
-            },
-          ],
-        },
-      ],
-    };
+            ],
+          },
+        ],
+      };
 
-    // Debug: Log the request details (without the full base64 string to keep console clean)
-    console.log("Debugging API Request:");
-    console.log("URL:", "https://api.openai.com/v1/chat/completions");
-    console.log("Headers:", {
-      "Content-Type": "application/json",
-      Authorization: "Bearer sk-...." + apiKey.slice(-4),
-    });
-    console.log("Request Body:", {
-      ...requestBody,
-      messages: [
-        {
-          ...requestBody.messages[0],
-          content: [
-            requestBody.messages[0].content[0],
-            {
-              ...requestBody.messages[0].content[1],
-              image_url: "(base64 data truncated)",
-            },
-          ],
-        },
-      ],
-    });
+      // Debug: Log the request details (without the full base64 string to keep console clean)
+      console.log("Debugging API Request:");
+      console.log("URL:", "https://api.openai.com/v1/chat/completions");
+      console.log("Headers:", {
+        "Content-Type": "application/json",
+        Authorization: "Bearer sk-...." + apiKey.slice(-4),
+      });
+      console.log("Request Body:", {
+        ...requestBody,
+        messages: [
+          {
+            ...requestBody.messages[0],
+            content: [
+              requestBody.messages[0].content[0],
+              {
+                ...requestBody.messages[0].content[1],
+                image_url: "(base64 data truncated)",
+              },
+            ],
+          },
+        ],
+      });
 
-    // Call the OpenAI API
-    try {
+      // Call the OpenAI API
       const response = await fetch(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -182,6 +198,8 @@ function main() {
     } catch (error) {
       console.error("Detailed error:", error);
       showError("Error calling the API: " + error.message);
+    } finally {
+      hideLoading();
     }
   });
 }
