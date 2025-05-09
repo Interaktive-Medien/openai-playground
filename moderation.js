@@ -19,6 +19,23 @@ function hideError() {
 }
 
 /**
+ * Show validation message
+ */
+function showValidation(message) {
+  const validationMessage = document.getElementById("validationMessage");
+  validationMessage.textContent = message;
+  validationMessage.style.display = "block";
+}
+
+/**
+ * Hide validation message
+ */
+function hideValidation() {
+  const validationMessage = document.getElementById("validationMessage");
+  validationMessage.style.display = "none";
+}
+
+/**
  * Show the moderation results
  */
 function showResults(response) {
@@ -89,9 +106,21 @@ function setLoading(isLoading) {
 }
 
 /**
+ * Convert image file to base64
+ */
+function imageToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+}
+
+/**
  * Check content using the OpenAI Moderation API
  */
-async function checkContent(text, model) {
+async function checkContent(text, imageFile, model) {
   const apiKey = localStorage.getItem("openai_api_key");
   if (!apiKey) {
     throw new Error(
@@ -99,10 +128,32 @@ async function checkContent(text, model) {
     );
   }
 
+  // Create input array for the API
+  const input = [];
+
+  // Add text input if provided
+  if (text) {
+    input.push({
+      type: "text",
+      text: text,
+    });
+  }
+
+  // Add image input if provided
+  if (imageFile) {
+    const base64Image = await imageToBase64(imageFile);
+    input.push({
+      type: "image_url",
+      image_url: {
+        url: base64Image,
+      },
+    });
+  }
+
   // Create request body
   const requestBody = {
     model: model,
-    input: text,
+    input: input,
   };
 
   // Log request details
@@ -147,22 +198,70 @@ async function checkContent(text, model) {
 }
 
 /**
+ * Handle image preview
+ */
+function setupImagePreview() {
+  const imageInput = document.getElementById("image");
+  const imagePreview = document.getElementById("imagePreview");
+  const previewImg = document.getElementById("previewImg");
+  const removeButton = document.getElementById("removeImage");
+
+  imageInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImg.src = e.target.result;
+        imagePreview.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  removeButton.addEventListener("click", () => {
+    imageInput.value = "";
+    previewImg.src = "";
+    imagePreview.style.display = "none";
+  });
+}
+
+/**
  * Main function to set up the page
  */
 function main() {
   const moderationForm = document.getElementById("moderationForm");
+  setupImagePreview();
 
   // Set up form submission
   moderationForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     hideError();
+    hideValidation();
+
+    const text = document.getElementById("text").value.trim();
+    const imageFile = document.getElementById("image").files[0];
+    const model = document.getElementById("model").value;
+
+    // Validate that at least one input is provided
+    if (!text && !imageFile) {
+      showValidation(
+        "Please provide either text or an image (or both) to analyze."
+      );
+      return;
+    }
+
+    // Validate image input for text-moderation-latest model
+    if (model === "text-moderation-latest" && imageFile) {
+      showValidation(
+        "The Text Moderation model only supports text input. Please switch to Omni Moderation model for image analysis."
+      );
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const text = document.getElementById("text").value.trim();
-      const model = document.getElementById("model").value;
-
-      const result = await checkContent(text, model);
+      const result = await checkContent(text, imageFile, model);
       showResults(result);
     } catch (error) {
       showError(error.message);

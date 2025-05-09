@@ -12,8 +12,8 @@
     <div class="container">
       <h1>OpenAI Moderation Demo</h1>
       <p class="description">
-        Identify potentially harmful content in text using OpenAI's Moderation
-        API.<br />
+        Identify potentially harmful content in text and images using OpenAI's
+        Moderation API.<br />
         <a
           href="https://platform.openai.com/docs/guides/moderation"
           target="_blank"
@@ -25,23 +25,41 @@
         <div class="input-section">
           <label for="model">Model:</label>
           <select id="model" required>
-            <option value="text-moderation-latest" selected>
-              Text Moderation (Latest)
+            <option value="omni-moderation-latest" selected>
+              Omni Moderation (Latest) - Text & Images
             </option>
-            <option value="text-moderation-stable">
-              Text Moderation (Stable)
+            <option value="text-moderation-latest">
+              Text Moderation (Latest) - Text Only
             </option>
           </select>
         </div>
 
         <div class="input-section">
-          <label for="text">Text to analyze:</label>
+          <label for="text">Text to analyze (optional):</label>
           <textarea
             id="text"
             placeholder="Enter text to check for potentially harmful content..."
             rows="4"
-            required
           ></textarea>
+        </div>
+
+        <div class="input-section">
+          <label for="image">Image to analyze (optional):</label>
+          <input type="file" id="image" accept="image/*" class="file-input" />
+          <div id="imagePreview" class="image-preview" style="display: none">
+            <img id="previewImg" src="" alt="Preview" />
+            <button type="button" id="removeImage" class="remove-image">
+              ×
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="validation-message"
+          id="validationMessage"
+          style="display: none"
+        >
+          Please provide either text or an image (or both) to analyze.
         </div>
 
         <button type="submit">
