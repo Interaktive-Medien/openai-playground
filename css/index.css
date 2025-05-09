@@ -48,18 +48,25 @@ OpenAI API Demos - Index Page Specific Styles
   gap: 10px;
   margin-top: 12px;
 }
-.cost-button {
+
+.cost-buttons .btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
-  background-color: #fff;
-  border: 1px solid gray;
+  background-color: #007bff;
+
   border-radius: 4px;
-  color: black;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
+}
+
+.cost-buttons .btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button-icon {
