@@ -48,26 +48,18 @@ OpenAI API Demos - Index Page Specific Styles
   gap: 10px;
   margin-top: 12px;
 }
-
 .cost-button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
   background-color: #fff;
-  border: 1px solid #ffeeba;
+  border: 1px solid black;
   border-radius: 4px;
-  color: #856404;
+  color: black;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
-}
-
-.cost-button:hover {
-  background-color: #fff5d8;
-  border-color: #ffdf7e;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .button-icon {
@@ -176,4 +168,34 @@ OpenAI API Demos - Index Page Specific Styles
 .demo-card p {
   margin-bottom: 0;
   color: #666;
+}
+
+.security-info {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.security-info summary {
+  cursor: pointer;
+  padding: 0.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+  user-select: none;
+}
+
+.security-info summary:hover {
+  color: #0056b3;
+}
+
+.security-info p {
+  margin: 0.75rem 0.5rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.security-info .api-key-info.warning {
+  margin: 1rem 0.5rem;
 }

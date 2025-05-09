@@ -3,23 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Primary Meta Tags -->
     <meta name="title" content="OpenAI API Demos" />
-    <meta name="description" content="Interactive demos showcasing OpenAI's powerful APIs including GPT-4, DALL·E, Whisper, and more. Experiment with AI chat, image generation, speech recognition, and content moderation." />
-    <meta name="keywords" content="OpenAI, API demos, GPT-4, DALL·E, Whisper, AI chat, image generation, speech recognition, text-to-speech, content moderation" />
+    <meta
+      name="description"
+      content="Interactive demos showcasing OpenAI's powerful APIs including GPT-4, DALL·E, Whisper, and more. Experiment with AI chat, image generation, speech recognition, and content moderation."
+    />
+    <meta
+      name="keywords"
+      content="OpenAI, API demos, GPT-4, DALL·E, Whisper, AI chat, image generation, speech recognition, text-to-speech, content moderation"
+    />
     <meta name="author" content="OpenAI API Learning Hub" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="OpenAI API Demos - Interactive AI Experiments" />
-    <meta property="og:description" content="Explore and experiment with OpenAI's cutting-edge AI technologies through interactive demos. Features GPT-4 chat, DALL·E image generation, Whisper speech recognition, and more." />
-    
+    <meta
+      property="og:title"
+      content="OpenAI API Demos - Interactive AI Experiments"
+    />
+    <meta
+      property="og:description"
+      content="Explore and experiment with OpenAI's cutting-edge AI technologies through interactive demos. Features GPT-4 chat, DALL·E image generation, Whisper speech recognition, and more."
+    />
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="OpenAI API Demos - Interactive AI Experiments" />
-    <meta property="twitter:description" content="Explore and experiment with OpenAI's cutting-edge AI technologies through interactive demos. Features GPT-4 chat, DALL·E image generation, Whisper speech recognition, and more." />
-    
+    <meta
+      property="twitter:title"
+      content="OpenAI API Demos - Interactive AI Experiments"
+    />
+    <meta
+      property="twitter:description"
+      content="Explore and experiment with OpenAI's cutting-edge AI technologies through interactive demos. Features GPT-4 chat, DALL·E image generation, Whisper speech recognition, and more."
+    />
+
     <title>OpenAI API Demos</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="css/index.css" />
@@ -66,20 +84,41 @@
 
         <p class="status" id="apiKeyStatus"></p>
 
-        <p class="api-key-info warning">
-          OpenAI will charge you based on your usage of their APIs. Different
-          models and endpoints have varying costs.
-          <div class="cost-buttons">
-            <a href="https://platform.openai.com/usage" target="_blank" class="cost-button">
-              <span class="button-icon">📊</span>
-              Monitor Costs
-            </a>
-            <a href="https://openai.com/api/pricing/" target="_blank" class="cost-button">
-              <span class="button-icon">💵</span>
-              View Pricing
-            </a>
+        <details class="security-info">
+          <summary>Is my API key stored safe?</summary>
+          <p>
+            API Playground stores your API Key locally in your browser storage.
+            It never leaves your device. However, if somebody has access to your
+            device, they could potentially retreive the key from your browser
+            storage.
+          </p>
+        </details>
+
+        <details class="security-info">
+          <summary>Is this free?</summary>
+          <div class="api-key-info">
+            OpenAI will charge you based on your usage of their APIs. Different
+            models and endpoints have varying costs.
+            <div class="cost-buttons">
+              <a
+                href="https://platform.openai.com/usage"
+                target="_blank"
+                class="cost-button"
+              >
+                <span class="button-icon">📊</span>
+                Monitor Costs
+              </a>
+              <a
+                href="https://openai.com/api/pricing/"
+                target="_blank"
+                class="cost-button"
+              >
+                <span class="button-icon">💵</span>
+                View Pricing
+              </a>
+            </div>
           </div>
-        </p>
+        </details>
       </div>
 
       <div class="demo-grid">
