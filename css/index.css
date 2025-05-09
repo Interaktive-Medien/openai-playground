@@ -16,6 +16,64 @@ OpenAI API Demos - Index Page Specific Styles
   color: #666;
 }
 
+.api-key-info.warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 12px 15px;
+  border-radius: 5px;
+  display: block;
+  line-height: 1.5;
+}
+
+.api-key-info.warning::before {
+  content: "⚠️";
+  margin-right: 8px;
+}
+
+.api-key-info.warning a {
+  color: #533f03;
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.api-key-info.warning a:hover {
+  color: #533f03;
+  text-decoration: none;
+}
+
+.cost-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.cost-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #fff;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
+  color: #856404;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.cost-button:hover {
+  background-color: #fff5d8;
+  border-color: #ffdf7e;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.button-icon {
+  font-size: 1.1em;
+}
+
 /* No Key State */
 .input-container {
   display: flex;
