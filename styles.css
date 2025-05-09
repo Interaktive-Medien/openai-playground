@@ -275,3 +275,26 @@ button[type="submit"]:disabled {
 .warning-banner a:hover {
   color: #b71c1c;
 }
+
+/* Back Button */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: color 0.2s;
+  font-size: 1.1em;
+  position: relative;
+  z-index: 1;
+}
+
+.back-button:hover {
+  color: #007bff;
+}
+
+.back-button::before {
+  content: "←";
+  font-size: 1.2em;
+}
