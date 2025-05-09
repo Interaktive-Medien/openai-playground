@@ -1,179 +1,9 @@
 /*
 OpenAI Translation Demo CSS
-This file styles the audio translation interface.
+This file contains styles specific to the audio translation interface.
 */
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
-}
-
-.container {
-  background-color: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-h1 {
-  margin-top: 0;
-  color: #007bff;
-}
-
-.description {
-  color: #444;
-  margin-bottom: 24px;
-}
-
-.description a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.description a:hover {
-  text-decoration: underline;
-}
-
-/* Form Styles */
-.input-section {
-  margin-bottom: 20px;
-}
-
-.input-section label {
-  display: block;
-  margin-bottom: 8px;
-  color: #333;
-  font-weight: 500;
-}
-
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1em;
-  min-height: 80px;
-  resize: vertical;
-}
-
-.file-info {
-  margin-top: 4px;
-  font-size: 0.9em;
-  color: #666;
-}
-
-input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px dashed #ddd;
-  border-radius: 5px;
-  background: #f8f9fa;
-}
-
-.options-section {
-  margin-bottom: 20px;
-}
-
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.checkbox-group label {
-  margin: 0;
-  cursor: pointer;
-}
-
-/* Tooltip */
-.tooltip {
-  cursor: help;
-  position: relative;
-}
-
-.tooltip:hover::after {
-  content: attr(title);
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #333;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8em;
-  white-space: nowrap;
-  z-index: 1;
-  margin-left: 8px;
-}
-
-/* Submit Button */
-button[type="submit"] {
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background 0.2s;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 150px;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-button[type="submit"]:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Loading Spinner */
-.loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s linear infinite;
-  margin-left: 10px;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.button-text {
-  display: inline-block;
-}
-
-/* Results Section */
-.result-section {
-  margin-top: 30px;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.result-section h2 {
-  margin-top: 0;
-  color: #007bff;
-}
-
+/* Translation Results */
 .translation-result {
   white-space: pre-wrap;
   font-family: monospace;
@@ -186,34 +16,7 @@ button[type="submit"]:disabled {
   overflow-y: auto;
 }
 
-.copy-button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background 0.2s;
-}
-
-.copy-button:hover {
-  background: #218838;
-}
-
-/* Error Section */
-.error-section {
-  background: #ffebee;
-  color: #c62828;
-  border: 1px solid #ef9a9a;
-  border-radius: 6px;
-  padding: 12px;
-  margin-top: 20px;
-}
-
-/* Audio Input Styles */
+/* Audio Recording */
 .audio-input-container {
   display: flex;
   gap: 10px;
@@ -221,19 +24,16 @@ button[type="submit"]:disabled {
 }
 
 .record-button {
-  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
   background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.9em;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 120px;
-  flex-shrink: 0;
+  transition: background-color 0.2s;
 }
 
 .record-button:hover {
@@ -241,11 +41,11 @@ button[type="submit"]:disabled {
 }
 
 .record-button.recording {
-  background-color: #28a745;
+  background-color: #6c757d;
 }
 
 .record-button.recording:hover {
-  background-color: #218838;
+  background-color: #5a6268;
 }
 
 .record-icon {
@@ -257,28 +57,31 @@ button[type="submit"]:disabled {
 }
 
 .record-button.recording .record-icon {
-  animation: pulse 1.5s infinite;
+  animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
   0% {
     transform: scale(1);
+    opacity: 1;
   }
   50% {
     transform: scale(1.2);
+    opacity: 0.8;
   }
   100% {
     transform: scale(1);
+    opacity: 1;
   }
 }
 
 .recording-status {
-  margin-top: 10px;
-  color: #dc3545;
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #dc3545;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 .recording-indicator {
@@ -286,16 +89,14 @@ button[type="submit"]:disabled {
   height: 8px;
   background-color: #dc3545;
   border-radius: 50%;
-  animation: pulse 1.5s infinite;
+  animation: pulse 1s infinite;
 }
 
-/* Audio Preview */
 .audio-preview {
   margin-top: 15px;
   padding: 15px;
   background: #f8f9fa;
   border-radius: 5px;
-  border: 1px solid #ddd;
 }
 
 .audio-preview audio {
@@ -310,13 +111,12 @@ button[type="submit"]:disabled {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9em;
-  transition: background 0.2s;
+  margin-right: 10px;
 }
 
 .use-recording-button {
   background-color: #28a745;
   color: white;
-  margin-right: 10px;
 }
 
 .use-recording-button:hover {
@@ -330,9 +130,4 @@ button[type="submit"]:disabled {
 
 .discard-recording-button:hover {
   background-color: #c82333;
-}
-
-input[type="file"] {
-  flex: 1;
-  min-width: 0;
 }
