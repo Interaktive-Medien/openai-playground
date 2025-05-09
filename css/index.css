@@ -1,0 +1,58 @@
+/*
+OpenAI API Demos - Index Page Specific Styles
+*/
+
+/* API Key Section */
+.api-key-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.api-key-info {
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+}
+
+/* Demo Grid */
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.demo-card {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.demo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.demo-card h2 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.demo-card p {
+  margin-bottom: 0;
+  color: #666;
+}
+
+/* Status Message */
+.status {
+  margin-top: 10px;
+  color: #666;
+}
