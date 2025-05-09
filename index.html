@@ -19,14 +19,34 @@
             >Create one here</a
           >
         </p>
-        <div class="input-container">
+
+        <!-- No API Key State -->
+        <div id="noKeyState" class="input-container" style="display: none">
           <input
             type="password"
             id="apiKey"
-            placeholder="Enter your OpenAI API key"
+            placeholder="sk-..."
+            pattern="sk-[a-zA-Z0-9]{32,}"
+            title="API key should start with 'sk-' followed by at least 32 characters"
           />
           <button onclick="saveApiKey()">Save API Key</button>
         </div>
+
+        <!-- API Key Saved State -->
+        <div
+          id="keyExistsState"
+          class="key-exists-container"
+          style="display: none"
+        >
+          <div class="key-status">
+            <span class="key-icon">🔑</span>
+            <span>API key is saved</span>
+          </div>
+          <button onclick="deleteApiKey()" class="delete-key-button">
+            Delete API Key
+          </button>
+        </div>
+
         <p class="status" id="apiKeyStatus"></p>
       </div>
 
