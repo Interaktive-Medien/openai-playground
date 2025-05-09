@@ -199,3 +199,26 @@ OpenAI API Demos - Index Page Specific Styles
 .security-info .api-key-info.warning {
   margin: 1rem 0.5rem;
 }
+
+.security-info ol {
+  margin: 0.75rem 0.5rem 0.75rem 2rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.security-info ol li {
+  margin-bottom: 0.5rem;
+}
+
+.security-info ol li:last-child {
+  margin-bottom: 0;
+}
+
+.security-info ol li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.security-info ol li a:hover {
+  text-decoration: underline;
+}
