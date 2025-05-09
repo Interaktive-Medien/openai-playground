@@ -3,6 +3,16 @@ OpenAI Translation Demo CSS
 This file contains styles specific to the audio translation interface.
 */
 
+/* Form Spacing */
+form {
+  margin-bottom: 20px;
+}
+
+form > button[type="submit"] {
+  margin-top: 20px;
+  padding: 12px 24px;
+}
+
 /* Translation Results */
 .translation-result {
   white-space: pre-wrap;
